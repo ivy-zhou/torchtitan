@@ -7,7 +7,10 @@
 import os
 import queue as queue_lib
 import shutil
+import subprocess
+import sys
 import tempfile
+import textwrap
 import time
 import unittest
 import uuid
@@ -127,6 +130,34 @@ class DummyTrainerConfig:
 
 
 class TestCheckpointManager(unittest.TestCase):
+    def test_legacy_module_does_not_import_torch_checkpointing(self):
+        script = textwrap.dedent(
+            """
+            import builtins
+
+            original_import = builtins.__import__
+
+            def import_without_torch_checkpointing(name, *args, **kwargs):
+                if name == "torch_checkpointing" or name.startswith(
+                    "torch_checkpointing."
+                ):
+                    raise AssertionError(f"unexpected import: {name}")
+                return original_import(name, *args, **kwargs)
+
+            builtins.__import__ = import_without_torch_checkpointing
+            import torchtitan.components.checkpoint
+            """
+        )
+
+        result = subprocess.run(
+            [sys.executable, "-c", script],
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+
+        self.assertEqual(0, result.returncode, result.stderr)
+
     def setUp(self):
         self.base_temp_dir = tempfile.mkdtemp()
         self.test_folder = os.path.join(self.base_temp_dir, self._testMethodName)
