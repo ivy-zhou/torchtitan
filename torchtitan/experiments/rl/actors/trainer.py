@@ -12,8 +12,8 @@ from typing import Any
 import torch
 import torchstore as ts
 from monarch.actor import Actor, current_rank, endpoint
-from torchtitan.components.checkpoint import CheckpointManager
-from torchtitan.components.checkpoint_utils import canonical_fqn
+from torchtitan.components.checkpointer.dcp import CheckpointManager
+from torchtitan.components.checkpointer.utils import canonical_fqn
 from torchtitan.components.loss import BaseLoss, ChunkedLossWrapper
 from torchtitan.components.optimizer import OptimizersContainer
 from torchtitan.components.optimizer.lr_scheduler import LRSchedulersContainer

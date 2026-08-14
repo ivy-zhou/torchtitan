@@ -18,7 +18,7 @@ from __future__ import annotations
 
 import dataclasses
 
-from torchtitan.components.checkpoint import CheckpointManager
+from torchtitan.components.checkpointer.dcp import CheckpointManager
 from torchtitan.components.loss import ChunkedLossWrapper
 from torchtitan.components.optimizer import default_adamw
 from torchtitan.components.optimizer.lr_scheduler import LRSchedulersContainer

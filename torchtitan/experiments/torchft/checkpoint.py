@@ -22,15 +22,14 @@ import torch
 import torch.distributed as dist
 import torch.nn as nn
 
-from torchtitan.components.checkpoint import (
-    AsyncMode,
-    CheckpointManager,
+from torchtitan.components.checkpointer.base import (
     DATALOADER,
     LR_SCHEDULER,
     MODEL,
     OPTIMIZER,
     TRAIN_STATE,
 )
+from torchtitan.components.checkpointer.dcp import AsyncMode, CheckpointManager
 from torchtitan.components.dataloader import BaseDataLoader
 from torchtitan.components.optimizer import OptimizersContainer
 from torchtitan.components.optimizer.lr_scheduler import LRSchedulersContainer
