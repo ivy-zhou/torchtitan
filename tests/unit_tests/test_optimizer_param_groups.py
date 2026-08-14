@@ -8,13 +8,13 @@ import unittest
 
 import torch
 import torch.nn as nn
-from torchtitan.components.lr_scheduler import LRSchedulersContainer
 from torchtitan.components.optimizer import (
     default_adamw,
     OptimizersContainer,
     ParamGroupConfig,
     register_moe_load_balancing_hook,
 )
+from torchtitan.components.optimizer.lr_scheduler import LRSchedulersContainer
 
 
 class SimpleModel(nn.Module):

@@ -31,12 +31,12 @@ from torch.distributed.algorithms._checkpoint.checkpoint_wrapper import (
 )
 
 from torchtitan.components.checkpoint import ModelWrapper
-from torchtitan.components.checkpoint_utils import (
+from torchtitan.components.optimizer import OptimizersContainer, ParamGroupConfig
+from torchtitan.components.optimizer.utils import (
     get_flat_optim_state_dict,
     init_optim_state,
     load_flat_optim_state_dict,
 )
-from torchtitan.components.optimizer import OptimizersContainer, ParamGroupConfig
 from torchtitan.models.llama3 import llama3_configs
 from torchtitan.models.llama3.model import Llama3Model
 

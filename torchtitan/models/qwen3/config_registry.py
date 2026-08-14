@@ -8,13 +8,13 @@ from typing import cast
 
 from torchtitan.components.checkpoint import CheckpointManager
 from torchtitan.components.loss import ChunkedLossWrapper, CrossEntropyLoss
-from torchtitan.components.lr_scheduler import LRSchedulersContainer
 from torchtitan.components.metrics import MetricsProcessor
 from torchtitan.components.optimizer import (
     default_adamw,
     OptimizersContainer,
     ParamGroupConfig,
 )
+from torchtitan.components.optimizer.lr_scheduler import LRSchedulersContainer
 from torchtitan.components.quantization import NVFP4LinearConverter
 from torchtitan.components.quantization.nvfp4 import nvfp4_bf16_tail_fqns
 from torchtitan.config import CompileConfig, ParallelismConfig, TrainingConfig

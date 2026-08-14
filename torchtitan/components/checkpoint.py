@@ -32,8 +32,8 @@ from torch.distributed.checkpoint.state_dict_saver import (
 from torch.distributed.checkpoint.stateful import Stateful
 from torch.distributed.tensor import DTensor
 from torchtitan.components.dataloader import BaseDataLoader
-from torchtitan.components.lr_scheduler import LRSchedulersContainer
 from torchtitan.components.optimizer import OptimizersContainer
+from torchtitan.components.optimizer.lr_scheduler import LRSchedulersContainer
 from torchtitan.config import Configurable, TORCH_DTYPE_MAP
 from torchtitan.observability import structured_logger as sl
 from torchtitan.protocols.state_dict_adapter import BaseStateDictAdapter
@@ -188,7 +188,7 @@ class CheckpointManager(Configurable):
 
         The solution to this problem is optimizer flattening.
         TorchTitan's OptimizersContainer flattens optimizer state dicts to FQN-keyed
-        flat dicts using the utilities in torchtitan/components/checkpoint_utils.py.
+        flat dicts using the utilities in torchtitan/components/optimizer/utils.py.
 
     2. With complex PP schedules, we have multiple model chunks per pp rank. This
     compounds challenge (1) by also requiring us to reason about multiple 'optim'
